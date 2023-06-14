@@ -1,22 +1,9 @@
 const mongoose = require('mongoose');
 
 const schema = new mongoose.Schema({
-    title: {
+    answer: {
         type: String,
         required: true
-    },
-    details: {
-        type: String,
-        required: true
-    },
-    coins: {
-        type: Number,
-        default: 0,
-        required: true
-    },
-    type: {
-        type: String,
-        default: 'others'
     },
     imageList: {
         type: [String],
@@ -26,10 +13,6 @@ const schema = new mongoose.Schema({
         type: [String],
         default: []
     },
-    totalAnswers: {
-        type: Number,
-        default: 0
-    },
     totalUpVotes: {
         type: Number,
         default: 0
@@ -38,20 +21,15 @@ const schema = new mongoose.Schema({
         type: Number,
         default: 0
     },
-    solved: {
+    winner: {
         type: Boolean,
-        enum: [true, false],
+        enum: [true,false],
         default: false
     },
-    winnerId: {
+    questionId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'Question'
     },
-    views: {
-        type: Number,
-        default: 0
-    }
-    ,
     upVoterList: [
         {
             type: mongoose.Schema.Types.ObjectId,
@@ -64,23 +42,12 @@ const schema = new mongoose.Schema({
             ref: 'People'
         }
     ],
-    answerList: [
-    {
-        answerId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Answer'
-        }
-    }],
-    askerId: {
+    helperId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'People'
     }
 
 })
 
-
-const Model = mongoose.model('Question', schema);
-
+const Model = mongoose.model('Answer', schema);
 module.exports = Model;
-
-//mongoose.connect(`mongodb+srv://${process.env.MONGODB_USER_NAME}:${process.env.MONGODB_PASS}@cluster-es.avemicr.mongodb.net/?retryWrites=true&w=majority`)

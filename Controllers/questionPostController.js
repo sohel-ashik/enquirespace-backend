@@ -1,4 +1,3 @@
-const { default: axios } = require("axios");
 const QuestionModel = require('../Schemas/QuestionSchema');
 
 async function questionPostController(req,res){
@@ -14,7 +13,8 @@ async function questionPostController(req,res){
     const newQuestion = new QuestionModel(questionData);
 
     try{
-        await newQuestion.save()
+        await newQuestion.save();
+        console.log('Question is posted');
         res.status(200).json({msg: 'File is saved...'})
     }catch(err){
         console.log(err);
