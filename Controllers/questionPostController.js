@@ -15,7 +15,7 @@ async function questionPostController(req,res){
     try{
         await newQuestion.save();
         console.log('Question is posted');
-        res.status(200).json({msg: 'File is saved...'})
+        res.status(200).json({msg: 'Question is saved...'})
     }catch(err){
         console.log(err);
         res.status(500).json({error: 'Server side fault'})

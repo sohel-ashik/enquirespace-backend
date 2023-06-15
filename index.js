@@ -8,6 +8,7 @@ const cors = require('cors')
 //internal imports
 const defaultErrorHandler = require('./MiddleWares/Common/errorHandler');
 const homeRouter = require('./Routers/homeRouter');
+const signupRouter = require('./Routers/signupRouter');
 
 const app = express();
 dotenv.config();
@@ -32,7 +33,7 @@ app.use(express.urlencoded({extended: true}));
 
 //routing setup
 // app.use('/login',loginRouter);
-// app.use('/signup',signupRouter);
+app.use('/signup',signupRouter);
 app.use('/home',homeRouter);
 // app.use('/accounts',accountsRouter);
 
