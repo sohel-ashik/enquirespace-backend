@@ -1,5 +1,7 @@
 const tempDB = require('../tempDB/tempUserData');
 const PeopleModel = require('../Schemas/PeopleSchema');
+const jwt = require('jsonwebtoken');
+const dotenv = require('dotenv');
 
 async function codeConfirmController(req,res){
     const reqData = req.body;
@@ -18,8 +20,16 @@ async function codeConfirmController(req,res){
                         pass: tempDB[reqData.mail]['pass']
 
                     })
-                    await newUser.save();
-                    res.status(200).json({msg: 'New user has been saved'});
+                    const savedUser = await newUser.save();
+                    const {_id,name,mail,profilePic} = savedUser;
+                    const token = jwt.sign({
+                        userId: _id,
+                        name: name,
+                        mail: mail,
+                        profilePic: profilePic
+                    },process.env.JWT_SECRET);
+
+                    res.status(200).json({msg: 'sign up successful',token: token});
 
                 }catch(err){
                     console.log(err);

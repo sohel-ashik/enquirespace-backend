@@ -73,7 +73,8 @@ const schema = new mongoose.Schema({
     }],
     askerId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'People'
+        ref: 'People',
+        required:true
     }
 
 })

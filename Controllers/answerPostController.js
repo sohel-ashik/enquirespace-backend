@@ -1,4 +1,5 @@
 const AnswerModel = require('../Schemas/AnswerSchema');
+const jwt = require('jsonwebtoken');
 
 async function answerPostController(req,res){
     // console.log(req.body);
@@ -11,6 +12,8 @@ async function answerPostController(req,res){
     const newAnswer = new AnswerModel(answerData);
 
     try{
+        const decodedToken = jwt.verify(req.body.token, process.env.JWT_SECRET);
+        console.log(decodedToken);
         await newAnswer.save();
         console.log("Answer is saved");
         res.status(200).json({msg: 'Answer is saved'})
