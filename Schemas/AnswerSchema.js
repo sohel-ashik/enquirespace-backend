@@ -45,7 +45,11 @@ const schema = new mongoose.Schema({
     helperId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'People'
-    }
+    },
+    postDate: {
+        type: Date,
+        default: Date.now
+      }
 
 })
 

@@ -75,7 +75,11 @@ const schema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'People',
         required:true
-    }
+    },
+    postDate: {
+        type: Date,
+        default: Date.now
+      }
 
 })
 

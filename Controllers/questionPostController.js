@@ -1,5 +1,5 @@
 const QuestionModel = require('../Schemas/QuestionSchema');
-const PeopleModel = require('../Schemas/QuestionSchema');
+const PeopleModel = require('../Schemas/PeopleSchema');
 const jwt = require('jsonwebtoken');
 
 async function questionPostController(req,res){
