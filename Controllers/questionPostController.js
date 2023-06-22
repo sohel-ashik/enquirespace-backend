@@ -27,6 +27,7 @@ async function questionPostController(req,res){
         if(people){
             //question id ref is added to user
             people.questionsArr.push(newQuestionSaved._id);
+            people.totalCoins = people.totalCoins - req.body.coins;
             await people.save();
 
             console.log('Question is posted');

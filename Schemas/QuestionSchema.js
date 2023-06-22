@@ -45,7 +45,7 @@ const schema = new mongoose.Schema({
     },
     winnerId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'People'
     },
     views: {
         type: Number,
@@ -66,10 +66,8 @@ const schema = new mongoose.Schema({
     ],
     answerList: [
     {
-        answerId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Answer'
-        }
     }],
     askerId: {
         type: mongoose.Schema.Types.ObjectId,

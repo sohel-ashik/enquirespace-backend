@@ -17,7 +17,8 @@ async function codeConfirmController(req,res){
                     const newUser = new PeopleModel({
                         name: tempDB[reqData.mail]['name'],
                         mail: tempDB[reqData.mail]['mail'],
-                        pass: tempDB[reqData.mail]['pass']
+                        pass: tempDB[reqData.mail]['pass'],
+                        totalCoins: 1000
 
                     })
                     const savedUser = await newUser.save();

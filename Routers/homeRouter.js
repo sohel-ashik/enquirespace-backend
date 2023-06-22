@@ -3,14 +3,13 @@ const express = require('express');
 //internal imports
 const questionPostController = require('../Controllers/questionPostController');
 const answerPostController = require('../Controllers/answerPostController');
+const randomPosts = require('../Controllers/randomPosts')
 
 //configuration 
 const router = express.Router();
 
 // queries
-router.get('/', (req,res)=>{
-    res.status(200).json({msg: "Home is getting you...."});
-})
+router.get('/',randomPosts);
 
 // post a question 
 router.post('/ask',questionPostController);

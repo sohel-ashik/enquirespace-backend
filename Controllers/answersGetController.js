@@ -3,22 +3,20 @@ const QuestionModel = require('../Schemas/QuestionSchema');
 const PeopleModel = require('../Schemas/PeopleSchema');
 const jwt = require('jsonwebtoken');
 
-async function answerPostController(req,res){
+async function answersGetController(req,res){
     // console.log(req.body);
 
     const answerData = {
         answer: req.body.answer,
         imageList: req.body.imgSrcArr,
-        questionId: req.body.questionId,
+        questionId: req.body.questionId
     }
 
-    
+    const newAnswer = new AnswerModel(answerData);
 
     try{
         const decodedToken = jwt.verify(req.headers.token, process.env.JWT_SECRET);
-        answerData.helperId = decodedToken.userId;
-        const newAnswer = new AnswerModel(answerData);
-        
+
         const savedAnswer = await newAnswer.save();
 
         const question = await QuestionModel.findById(req.body.questionId);
@@ -38,8 +36,7 @@ async function answerPostController(req,res){
             await AnswerModel.findByIdAndDelete(savedAnswer._id);
             res.status(500).json({error: 'Server side error'});
         }
-
-
+        
         
     }catch(err){
         console.log(err);
@@ -50,4 +47,4 @@ async function answerPostController(req,res){
 }
 
 
-module.exports = answerPostController;
+module.exports = answersGetController;
