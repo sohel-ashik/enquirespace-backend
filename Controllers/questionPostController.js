@@ -30,8 +30,8 @@ async function questionPostController(req,res){
             people.totalCoins = people.totalCoins - req.body.coins;
             await people.save();
 
-            console.log('Question is posted');
-            res.status(200).json({msg: 'Question is saved...'})
+            const newPopulatedQuestion = await newQuestionSaved.populate('askerId')
+            res.status(200).json({msg: newPopulatedQuestion})
         }else{
             //if anything wring the question is being removed
             await QuestionModel.findByIdAndDelete(newQuestionSaved._id);

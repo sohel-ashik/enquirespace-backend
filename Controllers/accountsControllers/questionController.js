@@ -5,9 +5,14 @@ const PeopleModel = require('../../Schemas/PeopleSchema');
 async function questionController(req,res){
     try{
         const decodedToken = jwt.verify(req.headers.token,process.env.JWT_SECRET);
-        const userId = decodedToken.userId;
+        const userId = req.headers.profileid ? req.headers.profileid : decodedToken.userId;
 
-        const people = await PeopleModel.findById(userId).populate('questionsArr');
+        const people = await PeopleModel.findById(userId).populate({
+            path: 'questionsArr',
+            populate: {
+                path: 'answerList'
+            }
+        });
         if(people){
             const {name,profilePic,questionsArr} = people;
             res.status(200).json({name,profilePic,questionsArr})
