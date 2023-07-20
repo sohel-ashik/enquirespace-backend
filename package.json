@@ -4,6 +4,7 @@
   "description": "Enquire Space backend",
   "main": "index.js",
   "scripts": {
+    "prebuild": "npm install --save bcrypt",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Sohel Ashik",
