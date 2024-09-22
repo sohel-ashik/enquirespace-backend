@@ -24,7 +24,7 @@ mongoose
 //cors setup
 app.use(
     cors( {
-        origin: ['https://enquirespace.netlify.app', 'http://127.0.0.1:5173']
+        origin: ['https://enquirespace.netlify.app', 'http://127.0.0.1:5173', 'https://enquirespace-backend.vercel.app/login']
     })
 )
 
